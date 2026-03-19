@@ -55,10 +55,8 @@ jobs:
           path: ~/.npm
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install 
-        if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
       - name: Build website
-        continue-on-error: true
         id: build-website
         run: npm run build
       - name: Upload artifacts
