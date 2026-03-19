@@ -20,7 +20,6 @@ jobs:
       - name: Lint code
         run: npm run lint
   test:
-    needs: lint
     runs-on: ubuntu-latest
     steps:
       - name: Get code
@@ -77,6 +76,7 @@ jobs:
       - name: Deploy
         run: echo "Deploying..."
   report:
+    needs: [lint, deploy]
     if: failure()
     runs-on: ubuntu-latest
     steps:
